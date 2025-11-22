@@ -1,3 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wordle-solver"
+version = "0.1.0"
+description = "A smart Python-based command-line tool that helps you solve Wordle puzzles efficiently."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
@@ -6,22 +17,37 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
-dev = [
-    "ruff",
-    "black",
-    "mypy",
 ]
+dependencies = []
 
 [project.scripts]
 wordle-solver = "wordle_solver.cli:main"
 
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "black",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+
 [tool.pytest.ini_options]
 addopts = "--cov=wordle_solver --cov-report=term-missing"
+testpaths = ["tests"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+wordle_solver = ["*.txt"]
 
 [tool.ruff]
 line-length = 88
