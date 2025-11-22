@@ -31,7 +31,7 @@ The heart of the application is the `WordleSolver` class in `src/wordle_solver/s
 
 ## 4. Development Setup
 
-The project uses `venv` for environment management and `pip` for installation.
+The project uses `venv` for environment management and `pip` for installation. **All commands must be run within the virtual environment.**
 
 1.  **Create and activate a virtual environment:**
     ```bash
@@ -41,7 +41,7 @@ The project uses `venv` for environment management and `pip` for installation.
 2.  **Install for development:**
     This command installs the project in editable mode (`-e`) and includes all testing and development dependencies.
     ```bash
-    pip install -e .[test,dev]
+    .\.venv\Scripts\python -m pip install -e .[test,dev]
     ```
 
 ## 5. Running the Application
@@ -59,24 +59,24 @@ The entry point is defined in `pyproject.toml` as `wordle-solver`.
 
 ## 6. Testing and Linting
 
-The project is configured with `pytest`, `ruff`, `black`, and `mypy`.
+The project is configured with `pytest`, `ruff`, `black`, and `mypy`. **Always use the virtual environment's Python executable.**
 
 -   **Run Tests**:
     ```bash
-    pytest
+    .\.venv\Scripts\python -m pytest
     ```
 -   **Check for Linting Errors**:
     ```bash
-    ruff check .
+    .\.venv\Scripts\python -m ruff check .
     ```
 -   **Format Code**:
     ```bash
-    ruff format .
-    black .
+    .\.venv\Scripts\python -m ruff format .
+    .\.venv\Scripts\python -m black .
     ```
 -   **Run Static Type Checking**:
     ```bash
-    mypy src
+    .\.venv\Scripts\python -m mypy src
     ```
 
 ## 7. Dependencies
@@ -88,3 +88,20 @@ The project is configured with `pytest`, `ruff`, `black`, and `mypy`.
     -   `ruff`: For linting and formatting.
     -   `black`: For code formatting.
     -   `mypy`: For static type checking.
+
+## 8. WSL Support
+
+You can run the project within the Windows Subsystem for Linux (WSL). This is useful for verifying cross-platform compatibility.
+
+1.  **Create a Linux virtual environment:**
+    ```bash
+    wsl python3 -m venv .venv-linux
+    ```
+2.  **Install dependencies:**
+    ```bash
+    wsl .venv-linux/bin/pip install -e .[test,dev]
+    ```
+3.  **Run Tests:**
+    ```bash
+    wsl .venv-linux/bin/pytest
+    ```

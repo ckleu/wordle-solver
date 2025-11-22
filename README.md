@@ -46,7 +46,7 @@ A smart Python-based command-line tool that helps you solve Wordle puzzles effic
     -   **Windows**:
         ```bash
         python -m venv .venv
-        .venv\Scripts\activate
+        .\.venv\Scripts\activate
         ```
 
 3.  **Install the Project**:
@@ -58,6 +58,7 @@ A smart Python-based command-line tool that helps you solve Wordle puzzles effic
     -   **For development** (includes testing and linting tools):
         ```bash
         pip install -e .[test,dev]
+        pre-commit install
         ```
 
 ---
@@ -132,6 +133,27 @@ After installing the project for development (`pip install -e .[test,dev]`), you
 -   **Run Static Type Checking**:
     ```bash
     mypy src
+    ```
+-   **Run Pre-commit Hooks**:
+    ```bash
+    pre-commit run --all-files
+    ```
+
+## 🐧 WSL Support
+
+You can run the project within the Windows Subsystem for Linux (WSL). This is useful for verifying cross-platform compatibility.
+
+1.  **Create a Linux virtual environment:**
+    ```bash
+    wsl python3 -m venv .venv-linux
+    ```
+2.  **Install dependencies:**
+    ```bash
+    wsl .venv-linux/bin/pip install -e .[test,dev]
+    ```
+3.  **Run Tests:**
+    ```bash
+    wsl .venv-linux/bin/pytest
     ```
 
 ---
