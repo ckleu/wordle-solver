@@ -21,6 +21,7 @@ def full_dictionary():
     This creates a dummy dictionary file for testing purposes.
     """
     dummy_file_name = "dummy-dictionary.txt"
+    # Create the file in the current directory (project root)
     with open(dummy_file_name, "w") as f:
         f.write("apple\n")
         f.write("baker\n")
@@ -30,7 +31,9 @@ def full_dictionary():
         f.write("treat\n")
         f.write("zzzzz\n")
 
-    dictionary = read_dictionary(dummy_file_name)
+    # Pass the absolute path so read_dictionary (which uses os.path.join)
+    # treats it as an absolute path and ignores the relative prefix.
+    dictionary = read_dictionary(os.path.abspath(dummy_file_name))
 
     os.remove(dummy_file_name)
 
