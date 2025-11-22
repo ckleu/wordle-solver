@@ -17,7 +17,10 @@ def read_dictionary(source_file_dictionary: str = DEFAULT_DICTIONARY_FILE) -> li
 
     dictionary = []
     try:
-        with open(os.path.join(os.getcwd(), source_file_dictionary), "r") as f:
+        # Use path relative to this file
+        current_dir = os.path.dirname(__file__)
+        file_path = os.path.join(current_dir, source_file_dictionary)
+        with open(file_path, "r") as f:
             for line in f:
                 word = line.rstrip()
                 if len(word) == 5:
